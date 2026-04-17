@@ -1,363 +1,124 @@
-# projects
+# 斗破苍穹：炎帝之路
 
-这是一个基于 [Next.js 16](https://nextjs.org) + [shadcn/ui](https://ui.shadcn.com) 的全栈应用项目，由扣子编程 CLI 创建。
+一个基于《斗破苍穹》世界观改编的互动式文字冒险游戏。玩家将以萧炎的成长路线为蓝本，在分支剧情、属性变化、随机事件和多结局中推进故事，体验从乌坦城少年一路走向巅峰的修炼之旅。
+
+## 项目简介
+
+本项目是一个单页沉浸式互动游戏，重点围绕以下体验设计：
+
+- 分支叙事：根据不同选择进入不同剧情节点，推进主线或特殊支线。
+- 数值成长：血量、斗气、丹药、修为等状态会随着选择实时变化。
+- 随机事件：在固定剧情之外插入特殊事件，增强不确定性和可重玩性。
+- 多结局设计：支持常规成长结局、特殊路线结局和偏黑暗分支结局。
+- 视觉氛围：通过背景渐变、状态栏、打字机效果和弹窗反馈营造小说改编游戏的沉浸感。
+
+当前主页面入口位于 [src/app/page.tsx](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/src/app/page.tsx:1)，游戏主界面位于 [src/components/game/game-screen.tsx](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/src/components/game/game-screen.tsx:1)。
+
+## 技术栈
+
+- Next.js 16 App Router
+- React 19
+- TypeScript 5
+- Tailwind CSS 4
+- shadcn/ui
+- 自定义 Node HTTP 服务入口
+
+## 核心玩法
+
+- 开局进入开始页，点击后进入主线剧情。
+- 每个剧情节点都会展示描述文本与可选行动。
+- 玩家选择会影响角色状态，并决定后续节点走向。
+- 特定节点会触发随机事件或资源转化提示。
+- 游戏结束后会根据路径和状态进入对应结局，并支持重新开始。
+
+根据当前设计文档，项目已规划出 56 个节点、8 个随机事件和 3 个主要结局分支，详情可见 [docs/game-flow.md](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/docs/game-flow.md:1)。
 
 ## 快速开始
 
-### 启动开发服务器
+### 环境要求
+
+- Node.js 24
+- pnpm 9 及以上
+
+### 安装依赖
 
 ```bash
-coze dev
+pnpm install
 ```
 
-启动后，在浏览器中打开 [http://localhost:5000](http://localhost:5000) 查看应用。
+### 启动开发环境
 
-开发服务器支持热更新，修改代码后页面会自动刷新。
+```bash
+pnpm dev
+```
+
+开发脚本会优先尝试默认端口；如果端口已被占用，会自动回退到下一个可用端口，并在终端输出实际访问地址。
 
 ### 构建生产版本
 
 ```bash
-coze build
+pnpm build
 ```
 
-### 启动生产服务器
+### 启动生产服务
 
 ```bash
-coze start
+pnpm start
 ```
 
-## 项目结构
-
-```
-src/
-├── app/                      # Next.js App Router 目录
-│   ├── layout.tsx           # 根布局组件
-│   ├── page.tsx             # 首页
-│   ├── globals.css          # 全局样式（包含 shadcn 主题变量）
-│   └── [route]/             # 其他路由页面
-├── components/              # React 组件目录
-│   └── ui/                  # shadcn/ui 基础组件（优先使用）
-│       ├── button.tsx
-│       ├── card.tsx
-│       └── ...
-├── lib/                     # 工具函数库
-│   └── utils.ts            # cn() 等工具函数
-└── hooks/                   # 自定义 React Hooks（可选）
-
-server/
-├── index.ts                 # 自定义服务器入口
-├── tsconfig.json           # Server TypeScript 配置
-└── dist/                    # 编译输出目录（自动生成）
-```
-
-## 核心开发规范
-
-### 1. 组件开发
-
-**优先使用 shadcn/ui 基础组件**
-
-本项目已预装完整的 shadcn/ui 组件库，位于 `src/components/ui/` 目录。开发时应优先使用这些组件作为基础：
-
-```tsx
-// ✅ 推荐：使用 shadcn 基础组件
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-
-export default function MyComponent() {
-  return (
-    <Card>
-      <CardHeader>标题</CardHeader>
-      <CardContent>
-        <Input placeholder="输入内容" />
-        <Button>提交</Button>
-      </CardContent>
-    </Card>
-  );
-}
-```
-
-**可用的 shadcn 组件清单**
-
-- 表单：`button`, `input`, `textarea`, `select`, `checkbox`, `radio-group`, `switch`, `slider`
-- 布局：`card`, `separator`, `tabs`, `accordion`, `collapsible`, `scroll-area`
-- 反馈：`alert`, `alert-dialog`, `dialog`, `toast`, `sonner`, `progress`
-- 导航：`dropdown-menu`, `menubar`, `navigation-menu`, `context-menu`
-- 数据展示：`table`, `avatar`, `badge`, `hover-card`, `tooltip`, `popover`
-- 其他：`calendar`, `command`, `carousel`, `resizable`, `sidebar`
-
-详见 `src/components/ui/` 目录下的具体组件实现。
-
-### 2. 路由开发
-
-Next.js 使用文件系统路由，在 `src/app/` 目录下创建文件夹即可添加路由：
+### 代码检查
 
 ```bash
-# 创建新路由 /about
-src/app/about/page.tsx
-
-# 创建动态路由 /posts/[id]
-src/app/posts/[id]/page.tsx
-
-# 创建路由组（不影响 URL）
-src/app/(marketing)/about/page.tsx
-
-# 创建 API 路由
-src/app/api/users/route.ts
+pnpm lint
+pnpm ts-check
 ```
 
-**页面组件示例**
+## 目录结构
 
-```tsx
-// src/app/about/page.tsx
-import { Button } from '@/components/ui/button';
-
-export const metadata = {
-  title: '关于我们',
-  description: '关于页面描述',
-};
-
-export default function AboutPage() {
-  return (
-    <div>
-      <h1>关于我们</h1>
-      <Button>了解更多</Button>
-    </div>
-  );
-}
+```text
+.
+├── assets/                 # 项目插图和素材
+├── docs/                   # 剧情、数值、结局、流程等设计文档
+├── public/                 # 静态资源
+├── scripts/                # 构建、启动与模拟分析脚本
+├── src/
+│   ├── app/                # Next.js 路由与全局样式
+│   ├── components/
+│   │   ├── game/           # 游戏界面、结局页、事件弹窗等业务组件
+│   │   └── ui/             # shadcn/ui 基础组件
+│   ├── hooks/              # 游戏状态等自定义 Hooks
+│   ├── lib/                # 故事数据、类型、动画与工具函数
+│   └── server.ts           # 自定义服务端入口
+├── AGENTS.md               # 协作与开发约束
+├── package.json
+└── README.md
 ```
 
-**动态路由示例**
+## 关键模块
 
-```tsx
-// src/app/posts/[id]/page.tsx
-export default async function PostPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+- [src/components/game](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/src/components/game)：
+  游戏的主要视觉与交互组件，包括开始页、状态栏、剧情界面、随机事件、结局页等。
+- [src/hooks/use-game.ts](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/src/hooks/use-game.ts:1)：
+  管理游戏流程、节点推进、状态变化、结局判定和重开逻辑。
+- [src/lib/story-data.ts](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/src/lib/story-data.ts:1)：
+  定义剧情节点、背景风格、随机事件等核心内容数据。
+- [src/lib/types.ts](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/src/lib/types.ts:1)：
+  统一游戏中的状态、节点、选项和结局类型。
+- [scripts/monte-carlo-simulation.js](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/scripts/monte-carlo-simulation.js:1)：
+  用于对数值系统和平衡性做模拟分析。
 
-  return <div>文章 ID: {id}</div>;
-}
-```
+## 开发约束
 
-**API 路由示例**
+- 仅允许使用 `pnpm` 管理依赖。
+- 默认优先复用 `src/components/ui/` 下的 shadcn/ui 组件。
+- 避免在 JSX 渲染期间直接使用 `Date.now()`、`Math.random()`、`typeof window` 等会引发 hydration 问题的动态值。
+- 动态客户端逻辑应放在 `use client` 组件中，并通过 `useEffect`、`useState` 控制挂载后的表现。
 
-```tsx
-// src/app/api/users/route.ts
-import { NextResponse } from 'next/server';
+## 文档参考
 
-export async function GET() {
-  return NextResponse.json({ users: [] });
-}
-
-export async function POST(request: Request) {
-  const body = await request.json();
-  return NextResponse.json({ success: true });
-}
-```
-
-### 3. 依赖管理
-
-**必须使用 pnpm 管理依赖**
-
-```bash
-# ✅ 安装依赖
-pnpm install
-
-# ✅ 添加新依赖
-pnpm add package-name
-
-# ✅ 添加开发依赖
-pnpm add -D package-name
-
-# ❌ 禁止使用 npm 或 yarn
-# npm install  # 错误！
-# yarn add     # 错误！
-```
-
-项目已配置 `preinstall` 脚本，使用其他包管理器会报错。
-
-### 4. 样式开发
-
-**使用 Tailwind CSS v4**
-
-本项目使用 Tailwind CSS v4 进行样式开发，并已配置 shadcn 主题变量。
-
-```tsx
-// 使用 Tailwind 类名
-<div className="flex items-center gap-4 p-4 rounded-lg bg-background">
-  <Button className="bg-primary text-primary-foreground">
-    主要按钮
-  </Button>
-</div>
-
-// 使用 cn() 工具函数合并类名
-import { cn } from '@/lib/utils';
-
-<div className={cn(
-  "base-class",
-  condition && "conditional-class",
-  className
-)}>
-  内容
-</div>
-```
-
-**主题变量**
-
-主题变量定义在 `src/app/globals.css` 中，支持亮色/暗色模式：
-
-- `--background`, `--foreground`
-- `--primary`, `--primary-foreground`
-- `--secondary`, `--secondary-foreground`
-- `--muted`, `--muted-foreground`
-- `--accent`, `--accent-foreground`
-- `--destructive`, `--destructive-foreground`
-- `--border`, `--input`, `--ring`
-
-### 5. 表单开发
-
-推荐使用 `react-hook-form` + `zod` 进行表单开发：
-
-```tsx
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-
-const formSchema = z.object({
-  username: z.string().min(2, '用户名至少 2 个字符'),
-  email: z.string().email('请输入有效的邮箱'),
-});
-
-export default function MyForm() {
-  const form = useForm({
-    resolver: zodResolver(formSchema),
-    defaultValues: { username: '', email: '' },
-  });
-
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-  };
-
-  return (
-    <form onSubmit={form.handleSubmit(onSubmit)}>
-      <Input {...form.register('username')} />
-      <Input {...form.register('email')} />
-      <Button type="submit">提交</Button>
-    </form>
-  );
-}
-```
-
-### 6. 数据获取
-
-**服务端组件（推荐）**
-
-```tsx
-// src/app/posts/page.tsx
-async function getPosts() {
-  const res = await fetch('https://api.example.com/posts', {
-    cache: 'no-store', // 或 'force-cache'
-  });
-  return res.json();
-}
-
-export default async function PostsPage() {
-  const posts = await getPosts();
-
-  return (
-    <div>
-      {posts.map(post => (
-        <div key={post.id}>{post.title}</div>
-      ))}
-    </div>
-  );
-}
-```
-
-**客户端组件**
-
-```tsx
-'use client';
-
-import { useEffect, useState } from 'react';
-
-export default function ClientComponent() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch('/api/data')
-      .then(res => res.json())
-      .then(setData);
-  }, []);
-
-  return <div>{JSON.stringify(data)}</div>;
-}
-```
-
-## 常见开发场景
-
-### 添加新页面
-
-1. 在 `src/app/` 下创建文件夹和 `page.tsx`
-2. 使用 shadcn 组件构建 UI
-3. 根据需要添加 `layout.tsx` 和 `loading.tsx`
-
-### 创建业务组件
-
-1. 在 `src/components/` 下创建组件文件（非 UI 组件）
-2. 优先组合使用 `src/components/ui/` 中的基础组件
-3. 使用 TypeScript 定义 Props 类型
-
-### 添加全局状态
-
-推荐使用 React Context 或 Zustand：
-
-```tsx
-// src/lib/store.ts
-import { create } from 'zustand';
-
-interface Store {
-  count: number;
-  increment: () => void;
-}
-
-export const useStore = create<Store>((set) => ({
-  count: 0,
-  increment: () => set((state) => ({ count: state.count + 1 })),
-}));
-```
-
-### 集成数据库
-
-推荐使用 Prisma 或 Drizzle ORM，在 `src/lib/db.ts` 中配置。
-
-## 技术栈
-
-- **框架**: Next.js 16.1.1 (App Router)
-- **UI 组件**: shadcn/ui (基于 Radix UI)
-- **样式**: Tailwind CSS v4
-- **表单**: React Hook Form + Zod
-- **图标**: Lucide React
-- **字体**: Geist Sans & Geist Mono
-- **包管理器**: pnpm 9+
-- **TypeScript**: 5.x
-
-## 参考文档
-
-- [Next.js 官方文档](https://nextjs.org/docs)
-- [shadcn/ui 组件文档](https://ui.shadcn.com)
-- [Tailwind CSS 文档](https://tailwindcss.com/docs)
-- [React Hook Form](https://react-hook-form.com)
-
-## 重要提示
-
-1. **必须使用 pnpm** 作为包管理器
-2. **优先使用 shadcn/ui 组件** 而不是从零开发基础组件
-3. **遵循 Next.js App Router 规范**，正确区分服务端/客户端组件
-4. **使用 TypeScript** 进行类型安全开发
-5. **使用 `@/` 路径别名** 导入模块（已配置）
+- [docs/game-flow.md](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/docs/game-flow.md:1)：主线流程与节点统计
+- [docs/design-v2.md](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/docs/design-v2.md:1)：版本化设计思路
+- [docs/cultivation-system.md](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/docs/cultivation-system.md:1)：修炼体系设计
+- [docs/numerical-system.md](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/docs/numerical-system.md:1)：数值系统说明
+- [docs/ending-design.md](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/docs/ending-design.md:1)：结局设计
+- [docs/monte-carlo-analysis.md](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/docs/monte-carlo-analysis.md:1)：模拟分析说明
