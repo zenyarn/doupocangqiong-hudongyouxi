@@ -1,0 +1,177 @@
+{
+  "random": {
+    "strategy": "random",
+    "iterations": 10000,
+    "endings": {
+      "炎帝传说": {
+        "count": 861,
+        "avgCultivation": 993.5040650406504,
+        "totalCultivation": 855407
+      },
+      "陨落": {
+        "count": 4098,
+        "avgCultivation": 411.5897999023914,
+        "totalCultivation": 1686695
+      },
+      "王者之风": {
+        "count": 981,
+        "avgCultivation": 386.9051987767584,
+        "totalCultivation": 379554
+      },
+      "宗师之名": {
+        "count": 1883,
+        "avgCultivation": 506.4099840679766,
+        "totalCultivation": 953570
+      },
+      "圣者之路": {
+        "count": 775,
+        "avgCultivation": 839.0670967741936,
+        "totalCultivation": 650277
+      },
+      "尊者传说": {
+        "count": 1309,
+        "avgCultivation": 720.8762414056532,
+        "totalCultivation": 943627
+      },
+      "强者初成": {
+        "count": 93,
+        "avgCultivation": 221.27956989247312,
+        "totalCultivation": 20579
+      }
+    },
+    "levelDistribution": {
+      "斗帝": 863,
+      "斗宗": 884,
+      "斗皇": 1837,
+      "斗王": 1967,
+      "斗灵": 1497,
+      "斗师": 570,
+      "斗圣": 791,
+      "半圣": 567,
+      "斗尊": 421,
+      "大斗师": 548,
+      "斗者": 55
+    },
+    "avgCultivation": 548.9709,
+    "avgNodeCount": 13.083,
+    "avgHp": 21.6519,
+    "deathCount": 4098,
+    "maxCultivation": 1245,
+    "minCultivation": 59,
+    "totalEventTriggers": 40533
+  },
+  "conservative": {
+    "strategy": "conservative",
+    "iterations": 10000,
+    "endings": {
+      "圣者之路": {
+        "count": 8561,
+        "avgCultivation": 868.8226842658568,
+        "totalCultivation": 7437991
+      },
+      "炎帝传说": {
+        "count": 1439,
+        "avgCultivation": 911.416956219597,
+        "totalCultivation": 1311529
+      }
+    },
+    "levelDistribution": {
+      "斗圣": 8561,
+      "斗帝": 1439
+    },
+    "avgCultivation": 874.952,
+    "avgNodeCount": 14,
+    "avgHp": 86.5939,
+    "deathCount": 0,
+    "maxCultivation": 951,
+    "minCultivation": 813,
+    "totalEventTriggers": 40000
+  },
+  "aggressive": {
+    "strategy": "aggressive",
+    "iterations": 10000,
+    "endings": {
+      "陨落": {
+        "count": 7907,
+        "avgCultivation": 469.50499557354243,
+        "totalCultivation": 3712376
+      },
+      "炎帝传说": {
+        "count": 2093,
+        "avgCultivation": 989.3363592928811,
+        "totalCultivation": 2070681
+      }
+    },
+    "levelDistribution": {
+      "斗皇": 2591,
+      "斗王": 3236,
+      "斗灵": 1253,
+      "斗帝": 2093,
+      "斗师": 208,
+      "大斗师": 206,
+      "斗宗": 410,
+      "斗尊": 3
+    },
+    "avgCultivation": 578.3057,
+    "avgNodeCount": 11.1584,
+    "avgHp": 2.6794,
+    "deathCount": 7907,
+    "maxCultivation": 1095,
+    "minCultivation": 159,
+    "totalEventTriggers": 32905
+  },
+  "balanced": {
+    "strategy": "balanced",
+    "iterations": 10000,
+    "endings": {
+      "宗师之名": {
+        "count": 3868,
+        "avgCultivation": 492.59875904860394,
+        "totalCultivation": 1905372
+      },
+      "王者之风": {
+        "count": 521,
+        "avgCultivation": 408.43761996161226,
+        "totalCultivation": 212796
+      },
+      "炎帝传说": {
+        "count": 3823,
+        "avgCultivation": 1059.6351033219985,
+        "totalCultivation": 4050985
+      },
+      "陨落": {
+        "count": 1504,
+        "avgCultivation": 550.9820478723404,
+        "totalCultivation": 828677
+      },
+      "尊者传说": {
+        "count": 267,
+        "avgCultivation": 675.1685393258427,
+        "totalCultivation": 180270
+      },
+      "圣者之路": {
+        "count": 17,
+        "avgCultivation": 826.5294117647059,
+        "totalCultivation": 14051
+      }
+    },
+    "levelDistribution": {
+      "斗王": 3210,
+      "斗帝": 3844,
+      "斗皇": 1539,
+      "斗灵": 491,
+      "斗尊": 297,
+      "斗宗": 409,
+      "半圣": 105,
+      "大斗师": 47,
+      "斗圣": 58
+    },
+    "avgCultivation": 719.2151,
+    "avgNodeCount": 13.8086,
+    "avgHp": 19.3031,
+    "deathCount": 1504,
+    "maxCultivation": 1287,
+    "minCultivation": 248,
+    "totalEventTriggers": 43846
+  }
+}
