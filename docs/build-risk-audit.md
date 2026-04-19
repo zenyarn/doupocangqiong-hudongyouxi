@@ -4,6 +4,11 @@
 
 本文档用于对照 [docs/build-error.md](/Users/mfyx/azen/coze/doupocangqiong-hudongyouxi/docs/build-error.md:1) 中总结的 Vercel 构建错误，逐项检查当前项目是否存在同类潜在问题，并记录本次修复与验证结果。
 
+先说结论：`build-error.md` 中列出的 7 类典型错误里，当前项目共命中 5 类潜在风险，未命中 2 类。
+
+- 已命中并完成修复：1、2、3、4、7
+- 当前未命中：5、6
+
 ## 排查结论
 
 当前项目在排查前，确实存在多项与 `build-error.md` 同类的潜在构建风险，主要集中在：
